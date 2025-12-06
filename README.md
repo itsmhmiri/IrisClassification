@@ -1,6 +1,6 @@
 #  Iris Classification Project
 
-![Iris Flowers Banner](https://hgtvhome.sndimg.com/content/dam/images/grdn/fullset/2014/2/5/0/12-waltersgardens-hi14643-irisautumn-circus.jpg.rend.hgtvcom.616.411.85.suffix/1452644697576.webp)
+![Iris Flowers Banner](https://floralife.com/wp-content/uploads/2022/04/Iris_2560x1790-640x448.png)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.9%2B-blue.svg" alt="Python Version">
