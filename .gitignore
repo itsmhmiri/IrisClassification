@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Data
+data/
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
