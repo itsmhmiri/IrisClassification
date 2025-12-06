@@ -28,8 +28,9 @@ def plot_histograms(data_path='data/X_train.csv'):
     Plots histograms of each feature in the training data.
     """
     X_train = pd.read_csv(data_path)
-    X_train.hist(figsize=(10, 8), bins=15, edgecolor='black')
+    X_train.hist(figsize=(12, 10), bins=15, edgecolor='black')
     plt.suptitle('Histograms of Iris Features')
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
     plt.show()
 
 def plot_boxplots(data_path='data/X_train.csv', target_path='data/y_train.csv'):
@@ -49,9 +50,9 @@ def plot_boxplots(data_path='data/X_train.csv', target_path='data/y_train.csv'):
     iris_species = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
     df['species'] = df['target'].map(iris_species)
     
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(15, 10))
     for i, feature in enumerate(X_train.columns):
-        plt.subplot(2, 2, i + 1)
+        plt.subplot(2, 3, i + 1)
         sns.boxplot(x='species', y=feature, data=df)
     plt.suptitle('Box Plots of Iris Features by Species')
     plt.tight_layout(rect=[0, 0, 1, 0.96])

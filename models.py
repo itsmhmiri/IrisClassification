@@ -1,67 +1,60 @@
+"""
+This file defines the machine learning models and their hyperparameter grids for tuning.
+"""
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-import pandas as pd
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-def train_logistic_regression(X_train_path='data/X_train.csv', y_train_path='data/y_train.csv', **kwargs):
+def get_models_and_parameters():
     """
-    Trains a Logistic Regression model.
+    Returns a dictionary of models and their corresponding hyperparameter grids.
     """
-    X_train = pd.read_csv(X_train_path)
-    y_train = pd.read_csv(y_train_path).values.ravel()
-    
-    model = LogisticRegression(**kwargs)
-    model.fit(X_train, y_train)
-    return model
-
-def train_knn(X_train_path='data/X_train.csv', y_train_path='data/y_train.csv', **kwargs):
-    """
-    Trains a K-Nearest Neighbors model.
-    """
-    X_train = pd.read_csv(X_train_path)
-    y_train = pd.read_csv(y_train_path).values.ravel()
-    
-    model = KNeighborsClassifier(**kwargs)
-    model.fit(X_train, y_train)
-    return model
-
-def train_svm(X_train_path='data/X_train.csv', y_train_path='data/y_train.csv', **kwargs):
-    """
-    Trains a Support Vector Machine model.
-    """
-    X_train = pd.read_csv(X_train_path)
-    y_train = pd.read_csv(y_train_path).values.ravel()
-    
-    model = SVC(**kwargs)
-    model.fit(X_train, y_train)
-    return model
-
-def train_decision_tree(X_train_path='data/X_train.csv', y_train_path='data/y_train.csv', **kwargs):
-    """
-    Trains a Decision Tree model.
-    """
-    X_train = pd.read_csv(X_train_path)
-    y_train = pd.read_csv(y_train_path).values.ravel()
-    
-    model = DecisionTreeClassifier(**kwargs)
-    model.fit(X_train, y_train)
-    return model
-
-if __name__ == '__main__':
-    # Example of training a model if the script is run directly
-    print("Training Logistic Regression model...")
-    lr_model = train_logistic_regression(random_state=42)
-    print("Logistic Regression model trained:", lr_model)
-
-    print("\nTraining KNN model...")
-    knn_model = train_knn(n_neighbors=5)
-    print("KNN model trained:", knn_model)
-
-    print("\nTraining SVM model...")
-    svm_model = train_svm(kernel='linear', C=1.0, random_state=42)
-    print("SVM model trained:", svm_model)
-
-    print("\nTraining Decision Tree model...")
-    dt_model = train_decision_tree(max_depth=3, random_state=42)
-    print("Decision Tree model trained:", dt_model)
+    models_and_params = {
+        'Logistic Regression': {
+            'model': LogisticRegression(max_iter=200),
+            'params': {
+                'model__C': [0.1, 1, 10, 100],
+                'model__solver': ['liblinear', 'lbfgs']
+            }
+        },
+        'KNN': {
+            'model': KNeighborsClassifier(),
+            'params': {
+                'model__n_neighbors': range(1, 10),
+                'model__weights': ['uniform', 'distance']
+            }
+        },
+        'SVM': {
+            'model': SVC(probability=True),
+            'params': {
+                'model__C': [0.1, 1, 10, 100],
+                'model__gamma': [1, 0.1, 0.01, 0.001],
+                'model__kernel': ['rbf', 'linear']
+            }
+        },
+        'Decision Tree': {
+            'model': DecisionTreeClassifier(),
+            'params': {
+                'model__max_depth': range(1, 10),
+                'model__criterion': ['gini', 'entropy']
+            }
+        },
+        'Random Forest': {
+            'model': RandomForestClassifier(),
+            'params': {
+                'model__n_estimators': [50, 100, 200],
+                'model__max_depth': [None, 10, 20, 30]
+            }
+        },
+        'Gradient Boosting': {
+            'model': GradientBoostingClassifier(),
+            'params': {
+                'model__n_estimators': [50, 100, 200],
+                'model__learning_rate': [0.01, 0.1, 0.2],
+                'model__max_depth': [3, 5, 7]
+            }
+        }
+    }
+    return models_and_params
