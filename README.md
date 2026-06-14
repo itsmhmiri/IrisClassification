@@ -125,6 +125,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 -   This project is inspired by the need for well-structured, introductory machine learning projects.
 -   Special thanks to Ronald Fisher for the timeless Iris dataset that has educated generations of data scientists.
-
----
-*This README was updated by the Gemini CLI Agent.*
